@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a Maria</title>
+    <!-- Metatags para o WhatsApp / Redes Sociais (Open Graph) -->
+    <meta property="og:title" content="Para a Mary 🌻 - Surpresinha boa? Ou não?">
+    <meta property="og:description" content="Clique para ver se vai gostar!">
+    <meta property="og:image" content="URL_DA_SUA_IMAGEM_AQUI"> <!-- Opcional: link direto para uma foto ou ícone -->
+    <meta property="og:url" content="URL_DE_ONDE_O_SITE_ESTA_HOSPEDADO">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        skyBlue: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0369a1',
+                        },
+                        sunflower: {
+                            light: '#fef08a',
+                            DEFAULT: '#eab308',
+                            dark: '#ca8a04',
+                            deep: '#854d0e'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                        script: ['"Dancing Script"', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e0effe 0%, #fef9c3 50%, #f0f7ff 100%);
+            color: #1e293b;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.08); opacity: 1; }
+        }
+
+        .floating-element {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0effe;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #eab308;
+            border-radius: 4px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="min-h-screen relative selection:bg-sunflower-light selection:text-sunflower-deep">
+
+    <canvas id="skyCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <div class="fixed top-4 right-4 z-50">
+        <button id="musicToggle" onclick="toggleAtmosphere()" class="glass-card px-4 py-2 rounded-full shadow-lg flex items-center space-x-2 text-sunflower-deep font-medium hover:bg-white transition-all transform hover:scale-105">
+            <i id="musicIcon" class="fa-solid fa-sun animate-spin"></i>
+            <span id="musicText" class="text-xs sm:text-sm">Modo Agitado</span>
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div id="customModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-md w-full shadow-2xl text-center transform transition-all scale-95 opacity-0" id="modalContent">
+            <div class="w-16 h-16 bg-sunflower/20 rounded-full flex items-center justify-center mx-auto mb-4 text-sunflower text-2xl">
+                <i class="fa-solid fa-sun"></i>
+            </div>
+            <h3 id="modalTitle" class="font-serif text-2xl font-bold text-sky-900 mb-2">Mensagem</h3>
+            <p id="modalMessage" class="text-slate-600 mb-6 leading-relaxed">Conteúdo da mensagem aqui.</p>
+            <button onclick="closeModal()" class="w-full bg-gradient-to-r from-sunflower to-amber-500 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:from-amber-500 hover:to-amber-600 transition-all">
+                Guardar no Coração
+            </button>
+        </div>
+    </div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-24">
+
+        <!-- SECTION 1: HERO -->
+        <header class="min-h-[85vh] flex flex-col items-center justify-center text-center relative pt-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sky-800 text-xs sm:text-sm font-medium mb-6 shadow-sm floating-element">
+                <i class="fa-solid fa-cloud text-sky-400"></i>
+                <span>Sob o mesmo céu & sob o mesmo sol</span>
+                <i class="fa-solid fa-sun text-sunflower"></i>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-sky-950 tracking-tight mb-6 leading-tight">
+                Para a <span class="text-transparent bg-clip-text bg-gradient-to-r from-sunflower-dark via-amber-500 to-yellow-600 font-script text-5xl sm:text-7xl md:text-8xl block mt-2">Chérie Maria</span>
+            </h1>
+
+            <p class="font-sans text-base sm:text-lg md:text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+                Cada palavra aqui é um resumo do que tenho de visão sobre sua pessoa. Que este espaço seja um lembrete constante do quanto você é especial e do quanto realmente ilumina a minha vida.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
+                <a href="#valor" class="bg-gradient-to-r from-sky-500 to-sky-600 text-white font-medium py-3.5 px-8 rounded-2xl shadow-lg hover:shadow-sky-500/30 hover:from-sky-600 hover:to-sky-700 transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-heart text-white"></i>
+                    <span>O seu valor pra mim</span>
+                </a>
+                <a href="#motivos" class="glass-card text-sky-900 font-medium py-3.5 px-8 rounded-2xl hover:bg-white/90 transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2 border border-sky-200">
+                    <i class="fa-solid fa-star text-sunflower"></i>
+                    <span>Mural de Motivos</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- SECTION 2: O VALOR -->
+        <section id="valor" class="scroll-mt-16">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs uppercase tracking-widest text-sky-600 font-semibold block mb-2">Significado Sincerão</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-sky-950">O Valor Inestimável que Você Tem</h2>
+                    <div class="w-16 h-1 bg-sunflower mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white/60 p-6 rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center text-sky-600 text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-sky-950 mb-2">Luz em Dias Nublados</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Maria, simplesmente você tem a capacidade de estar presente dos momentos mais tops aos mais "chatos" e nestes, me tirar da vibe "séria", para aquele sorriso disfarçado, mas com um brilho nos olhos que só você consegue provocar.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/60 p-6 rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center text-sunflower-dark text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-cloud-sun"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-sky-950 mb-2">Paz no Céu da Vida</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Acredita que você traz serenidade e equilíbrio para os meus dias? Principalmente nas minhas ideias malucas kakak você manda um tipo: Bora repensar sobre antes kak
+                        </p>
+                    </div>
+
+                    <div class="bg-white/60 p-6 rounded-2xl border border-white/80 shadow-sm hover:shadow-md transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center text-sky-600 text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-sky-950 mb-2">Inspiração Constante</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Como já mencionei anteriormente, vejo em você uma mulher forte, que busca alcançar suas conquistas, crescendo, aprendendo, evoluindo... Você é determinada. De verdade, você tem se tornado cada vez mais um exemplo de pessoa/cristã. Sua transformação é magnifica.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-10 bg-gradient-to-r from-sky-500/10 via-sunflower/10 to-sky-500/10 p-6 rounded-2xl text-center border border-sky-200/60">
+                    <p class="font-serif italic text-sky-900 text-base sm:text-lg">
+                        "Se a vida fosse um vasto céu estrelado, você seria a estrela mais brilhante. E se fosse um jardim sem fim, você seria o único girassol." - Só me faz lembrar daquela estrela cadente... É tive esse privilégio de ver uma estrela cadente, contigo. Eu fico pensando se foi sonho aquele momento kakak mas eu fico muito feliz 🌟
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: MURAL DE MOTIVOS -->
+        <section id="motivos" class="scroll-mt-16">
+            <div class="text-center mb-10">
+                <span class="text-xs uppercase tracking-widest text-sky-600 font-semibold block mb-2">Mural de Afeto</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-sky-950">Por que a Maria é tão especial?</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">Clique em cada cartão para revelar um pedacinho do que sinto</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div onclick="revealCard(this, 'Eu adoro seu sorriso, e cada conversa que você solta ele só ressalta isso. Por isso fico questionando quando tá mais na sua... Dá falta dele')" class="glass-card p-6 rounded-2xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-white/80 group">
+                    <div class="flex items-center space-x-4 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-sunflower/20 flex items-center justify-center text-sunflower-dark group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-face-smile-beam"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-sky-950">O seu sorriso</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm">Toque para ver o motivo...</p>
+                </div>
+
+                <div onclick="revealCard(this, 'Conversar com você são momentos que acredite, mudam meus dias. Seu tempo pra mim, é um privilégio de ter')" class="glass-card p-6 rounded-2xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-white/80 group">
+                    <div class="flex items-center space-x-4 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-sky-200 flex items-center justify-center text-sky-700 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-sky-950">Nossas conversas</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm">Toque para ver o motivo...</p>
+                </div>
+
+
+                <div onclick="revealCard(this, 'Vejo em você intenções e ações maravilhosas de bondade, empatia e um cuidado genuíno com as pessoas ao seu redor. Isso te torna única e cada vez mais semelhante a Ele.')" class="glass-card p-6 rounded-2xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-white/80 group">
+                    <div class="flex items-center space-x-4 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-sky-950">Sua alma bondosa</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm">Toque para ver o motivo...</p>
+                </div>
+
+                <div onclick="revealCard(this, 'Eu simplesmente, gosto muito da sua presença em si.')" class="glass-card p-6 rounded-2xl shadow-sm hover:shadow-md transition-all cursor-pointer border border-white/80 group">
+                    <div class="flex items-center space-x-4 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-sunflower-dark group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-sky-950">E assim...</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm">Toque para ver o motivo...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CARTINHA -->
+        <section class="relative">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 shadow-xl border border-white/90 relative overflow-hidden">
+                <div class="text-center mb-8">
+                    <div class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3 text-sky-600">
+                        <i class="fa-solid fa-envelope-open-text text-xl"></i>
+                    </div>
+                    <h2 class="font-serif text-3xl font-bold text-sky-950">Carta Aberta para a Maria</h2>
+                    <span class="text-xs text-slate-500 font-sans tracking-wide uppercase">Escrita com carinho e admiração</span>
+                </div>
+
+                <div class="space-y-4 font-sans text-slate-700 leading-relaxed text-base sm:text-lg bg-white/50 p-6 sm:p-8 rounded-2xl shadow-inner border border-white">
+                    <p class="font-serif italic text-sky-900 font-medium">Querida Maria,</p>
+                    <p>
+                        Se eu pudesse escolher um símbolo para representar o que você significa para mim, seria sem dúvida um girassol sob um céu limpo de verão, e aquele colar representa bem isso.
+A minha visão por você, foi distrinchada por alguns pontos aqui, mas é simplesmente inegável tudo que fez na minha vida até hoje. Que engraçado kakak escrevendo aqui lembrei dos seus audios fofos. É alguém que eu venho conhecendo aos poucos, mas o tanto que eu queria só poder ter a honra de te ouvir mais sabe? Mesmo não sendo seu costume, gostaria de não só "despejar" em você tanto de coisas que falo, mas que pudesse também lhe ouvir, poder te ajudar caso precisasse.
+Você pode não achar, mas vale num tamanho infinitinitamente pra mim. Você não é apenas a Maria pra mim; você é aquela pessoa que traz leveza, que me inspira com a sua força e com quem eu sei que posso contar e confiar sem me preocupar. Te admirar é fácil porque tudo em você é autêntico. Eu amo a nossa parceria e sou extremamente grato por ter você na minha vida. Você é especial pra mim e a mulher que me entende muito bem, muitas vezes sem precisar que eu me pronuncie pra entender. Obrigado por ser quem você é e por compartilhar sua vida comigo. Que possamos continuar a crescer juntos, aprendendo e apoiando um ao outro em cada passo do caminho. Te amo sabia?
+                    </p>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <button onclick="triggerLoveShower()" class="bg-gradient-to-r from-sunflower via-amber-500 to-yellow-600 text-white font-semibold py-4 px-8 rounded-2xl shadow-lg hover:shadow-amber-500/40 hover:scale-105 transition-all inline-flex items-center space-x-3">
+                        <i class="fa-solid fa-sun animate-spin"></i>
+                        <span>Chuva dos Girassóis PRO+</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: PLAYER DE MÚSICA SUNFLOWER COM MILES MORALES -->
+        <section id="music-player-section" class="relative">
+            <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-200/60 max-w-xl mx-auto text-center relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-40 h-40 bg-sunflower/20 rounded-full blur-2xl pointer-events-none"></div>
+                <div class="absolute -bottom-12 -left-12 w-40 h-40 bg-sky-400/20 rounded-full blur-2xl pointer-events-none"></div>
+
+                <div class="relative z-10 flex flex-col items-center">
+                    <!-- Imagem do Homem-Aranha (Miles Morales) -->
+                    <div class="relative group cursor-pointer mb-4" onclick="togglePlayMusic()">
+                        <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-amber-400 shadow-xl transition-transform duration-300 transform group-hover:scale-105">
+                            <img src="Mid/Spider-Man.png" alt="Miles Morales ouvindo música" class="w-full h-full object-cover">
+                        </div>
+                        <button id="playBtnIcon" class="absolute inset-0 m-auto w-14 h-14 bg-amber-500/90 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-amber-600 transition-all transform hover:scale-110">
+                            <i id="playerIcon" class="fa-solid fa-play text-xl ml-1"></i>
+                        </button>
+                    </div>
+
+                    <h3 class="font-serif text-2xl font-bold text-sky-950 mb-1">Essa você conhece 🌻</h3>
+                    <p class="text-xs uppercase tracking-widest text-slate-500 font-medium mb-4">Acredito que traz uma vibe boa pra você</p>
+
+                    <!-- Player de Áudio Oculto -->
+                    <audio id="sunflowerAudio" src="Mid/Sunflower.mp3.mpeg" preload="metadata"></audio>
+
+                    <!-- Barra de Progresso Customizada -->
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden cursor-pointer mb-2" onclick="seekAudio(event)">
+                        <div id="audioProgressBar" class="bg-gradient-to-r from-sunflower to-amber-500 h-full w-0 transition-all duration-150"></div>
+                    </div>
+                    <div class="w-full flex justify-between text-xs text-slate-500 font-mono mb-4">
+                        <span id="currentTimeStr">0:00</span>
+                        <span id="durationStr">0:00</span>
+                    </div>
+
+                    <button onclick="togglePlayMusic()" class="bg-gradient-to-r from-sunflower to-amber-500 text-white font-semibold py-3 px-8 rounded-xl shadow-md hover:from-amber-500 hover:to-amber-600 transition-all flex items-center gap-2">
+                        <i id="btnActionIcon" class="fa-solid fa-play"></i>
+                        <span id="btnActionText">Play</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-8 text-slate-600 text-sm font-light space-y-2">
+            <p class="font-serif text-sky-900 font-medium">Criado com todo o amor e carinho do mundo para a Maria.</p>
+            <p class="text-xs text-slate-500">Que Deus continue sempre guiando nossos passos. Bora evoluir moça?!</p>
+        </footer>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Modal functions
+        function showModal(title, message) {
+            const modal = document.getElementById('customModal');
+            const content = document.getElementById('modalContent');
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = message;
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('customModal');
+            const content = document.getElementById('modalContent');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function revealCard(element, secretText) {
+            const p = element.querySelector('p');
+            if (p.getAttribute('data-revealed') === 'true') {
+                showModal("Momento Especial", secretText);
+                return;
+            }
+            p.innerText = secretText;
+            p.classList.add('text-sky-900', 'font-medium', 'italic');
+            p.setAttribute('data-revealed', 'true');
+            element.classList.add('bg-white', 'border-sunflower');
+        }
+
+        // Atmosphere toggle
+        let atmosphereActive = true;
+        function toggleAtmosphere() {
+            atmosphereActive = !atmosphereActive;
+            const icon = document.getElementById('musicIcon');
+            const text = document.getElementById('musicText');
+            if(atmosphereActive) {
+                icon.className = "fa-solid fa-sun animate-spin text-sunflower";
+                text.innerText = "Modo Céu & Girassol";
+                showModal("Atmosfera Ativada", "Girassóis e estrelas celestes dançando para a Maria!");
+            } else {
+                icon.className = "fa-solid fa-cloud text-sky-500";
+                text.innerText = "Modo Tranquilo";
+                showModal("Atmosfera Suave", "Animações pausadas para uma leitura calma.");
+            }
+        }
+
+        // Canvas Particle Animation
+        const canvas = document.getElementById('skyCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const particles = [];
+        const particleCount = 25;
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 4 + 2,
+                color: Math.random() > 0.5 ? '#eab308' : '#38bdf8',
+                speedY: Math.random() * 0.8 + 0.2,
+                speedX: (Math.random() - 0.5) * 0.5,
+                opacity: Math.random() * 0.7 + 0.3
+            });
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+
+            if (atmosphereActive) {
+                particles.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+
+                    if (p.y > height) {
+                        p.y = -10;
+                        p.x = Math.random() * width;
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.opacity;
+                    ctx.fill();
+                });
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        function triggerLoveShower() {
+            showModal("Chuva de Girassóis 🌻", "Para a Maria, que ilumina cada segundo da minha vida com a luz do sol e a suavidade do céu.");
+            for(let i=0; i<40; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: -10,
+                    radius: Math.random() * 6 + 3,
+                    color: '#eab308',
+                    speedY: Math.random() * 3 + 1,
+                    speedX: (Math.random() - 0.5) * 2,
+                    opacity: 1
+                });
+            }
+        }
+
+        // Music Player Controls
+        const audio = document.getElementById('sunflowerAudio');
+        const playerIcon = document.getElementById('playerIcon');
+        const btnActionIcon = document.getElementById('btnActionIcon');
+        const btnActionText = document.getElementById('btnActionText');
+        const progressBar = document.getElementById('audioProgressBar');
+        const currentTimeStr = document.getElementById('currentTimeStr');
+        const durationStr = document.getElementById('durationStr');
+
+        function togglePlayMusic() {
+            if (audio.paused) {
+                audio.play();
+                playerIcon.className = "fa-solid fa-pause text-xl";
+                btnActionIcon.className = "fa-solid fa-pause";
+                btnActionText.innerText = "Pausar Trilha Sonora";
+                triggerLoveShower();
+            } else {
+                audio.pause();
+                playerIcon.className = "fa-solid fa-play text-xl ml-1";
+                btnActionIcon.className = "fa-solid fa-play";
+                btnActionText.innerText = "Tocar Trilha Sonora";
+            }
+        }
+
+        function formatTime(seconds) {
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = percent + '%';
+                currentTimeStr.innerText = formatTime(audio.currentTime);
+                durationStr.innerText = formatTime(audio.duration);
+            }
+        });
+
+        audio.addEventListener('ended', () => {
+            playerIcon.className = "fa-solid fa-play text-xl ml-1";
+            btnActionIcon.className = "fa-solid fa-play";
+            btnActionText.innerText = "Tocar Trilha Sonora";
+            progressBar.style.width = '0%';
+        });
+
+        function seekAudio(e) {
+            const bar = e.currentTarget;
+            const clickX = e.offsetX;
+            const width = bar.clientWidth;
+            if (audio.duration) {
+                audio.currentTime = (clickX / width) * audio.duration;
+            }
+        }
+    </script>
+</body>
+</html>
